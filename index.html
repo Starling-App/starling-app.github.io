@@ -12,7 +12,6 @@
         radial-gradient(circle at top right, rgba(255, 195, 140, 0.28), transparent 24%),
         radial-gradient(circle at 80% 70%, rgba(121, 140, 255, 0.12), transparent 26%),
         linear-gradient(180deg, #f8fbff 0%, #edf4ff 52%, #f8fbff 100%);
-      --panel-bg: rgba(255, 255, 255, 0.76);
       --panel-strong: rgba(255, 255, 255, 0.9);
       --panel-border: rgba(78, 109, 224, 0.14);
       --text-main: #14203a;
@@ -67,19 +66,6 @@
       pointer-events: none;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
     .hero-copy h1 {
       margin: 0;
       font-size: clamp(3rem, 7vw, 5.4rem);
@@ -87,41 +73,7 @@
       letter-spacing: -0.055em;
     }
 
-    .hero-copy p {
-      max-width: 640px;
-      margin: 18px 0 0;
-      font-size: 1.08rem;
-      line-height: 1.8;
-      color: var(--text-subtle);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(78, 109, 224, 0.14);
-      color: var(--text-main);
-      font-size: 0.92rem;
-      font-weight: 600;
-      box-shadow: 0 12px 30px rgba(74, 97, 152, 0.08);
-    }
-
     .section-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
       margin: 38px 0 18px;
     }
 
@@ -129,13 +81,6 @@
       margin: 0;
       font-size: clamp(1.6rem, 4vw, 2.4rem);
       letter-spacing: -0.04em;
-    }
-
-    .section-header p {
-      margin: 0;
-      max-width: 580px;
-      color: var(--text-subtle);
-      line-height: 1.7;
     }
 
     .featured-grid {
@@ -180,11 +125,7 @@
     }
 
     .card-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      display: block;
     }
 
     .card-header h3 {
@@ -193,23 +134,11 @@
       letter-spacing: -0.04em;
     }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: rgba(66, 99, 235, 0.1);
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
     .app-description {
       margin: 10px 0 0;
-      max-width: 760px;
+      max-width: 620px;
       color: var(--text-subtle);
-      line-height: 1.75;
+      line-height: 1.65;
       font-size: 1.02rem;
     }
 
@@ -232,70 +161,12 @@
       font-weight: 600;
     }
 
-    .card-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .card-note {
-      color: var(--text-soft);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    .card-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: #1f366f;
-      color: #fff;
-      font-weight: 700;
-      box-shadow: 0 18px 36px rgba(31, 54, 111, 0.18);
-    }
-
-    .card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .card-secondary-link {
-      color: var(--accent);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .card-secondary-link:hover,
-    .card-secondary-link:focus-visible {
-      text-decoration: underline;
-    }
-
-    .footer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 8px;
-    }
-
-    .footer-copy {
-      color: var(--text-soft);
-      line-height: 1.7;
-    }
-
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
       align-items: center;
+      padding-top: 8px;
     }
 
     .footer-links a {
@@ -327,14 +198,8 @@
       }
 
       .hero,
-      .featured-card,
-      .studio-card {
+      .featured-card {
         padding: 20px;
-      }
-
-      .card-footer,
-      .footer {
-        align-items: flex-start;
       }
     }
   </style>
@@ -342,24 +207,14 @@
 <body>
   <main class="page">
     <section class="hero">
-      <span class="eyebrow">Starling Studio</span>
       <div class="hero-copy">
         <h1>Starling Apps</h1>
-        <p>Commercial Apple apps by Starling, with each product named after a bird and crafted for a polished, focused user experience.</p>
-        <div class="hero-meta" aria-label="Studio highlights">
-          <span class="meta-pill">Commercial Apple Apps</span>
-          <span class="meta-pill">iPhone + macOS</span>
-          <span class="meta-pill">Bird-Inspired Product Names</span>
-        </div>
       </div>
     </section>
 
     <section aria-labelledby="featured-apps-title">
       <div class="section-header">
-        <div>
-          <h2 id="featured-apps-title">Featured App</h2>
-        </div>
-        <p>The Starling collection will expand over time. Right now, the first release is Starling Calculator, built for iPhone and designed for iOS 18 and later.</p>
+        <h2 id="featured-apps-title">Featured App</h2>
       </div>
 
       <div class="featured-grid" aria-label="App list">
@@ -369,20 +224,12 @@
             <div class="app-meta">
               <div class="card-header">
                 <h3>Starling Calculator</h3>
-                <span class="status">Available</span>
               </div>
-              <p class="app-description">A powerful bilingual voice calculator that understands you instantly, helping users speak naturally and get accurate results with speed, confidence, and a beautifully focused interface.</p>
+              <p class="app-description">A powerful bilingual voice calculator that understands you instantly.</p>
               <div class="chip-row" aria-label="App details">
-                <span class="chip">iPhone App</span>
-                <span class="chip">Supports iOS 18+</span>
-                <span class="chip">Bilingual Voice Input</span>
-              </div>
-              <div class="card-footer">
-                <div class="card-note">Explore screenshots, App Store links, and product pages for each release from the Starling studio lineup.</div>
-                <div class="card-actions">
-                  <span class="card-cta">View App</span>
-                  <a class="card-secondary-link" href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
-                </div>
+                <span class="chip">iPhone</span>
+                <span class="chip">iOS 18+</span>
+                <span class="chip">Voice Input</span>
               </div>
             </div>
           </article>
@@ -390,14 +237,11 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="footer-copy">Starling is building a portfolio of beautifully crafted Apple apps, starting with Starling Calculator for iPhone on iOS 18+.</div>
-      <nav class="footer-links" aria-label="Site links">
-        <a href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms of Use</a>
-      </nav>
-    </footer>
+    <nav class="footer-links" aria-label="Site links">
+      <a href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./terms.html">Terms of Use</a>
+    </nav>
   </main>
 </body>
 </html>
