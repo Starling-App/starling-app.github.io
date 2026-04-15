@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@
     }
 
     .page {
-      width: min(1080px, 100%);
+      width: min(900px, 100%);
       margin: 0 auto;
     }
 
@@ -55,7 +55,7 @@
 
     .header p {
       margin: 14px 0 26px;
-      max-width: 620px;
+      max-width: 640px;
       line-height: 1.7;
       color: var(--text-subtle);
     }
@@ -63,6 +63,8 @@
     .carousel {
       position: relative;
       overflow: hidden;
+      width: min(100%, 620px);
+      margin: 0 auto;
       border-radius: 30px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -77,13 +79,14 @@
 
     .slide {
       min-width: 100%;
-      padding: 24px;
+      padding: 20px;
     }
 
     .slide img {
       display: block;
       width: 100%;
       height: auto;
+      max-height: 1344px;
       border-radius: 22px;
       object-fit: cover;
       background: #fff;
@@ -168,36 +171,36 @@
 </head>
 <body>
   <main class="page">
-    <a class="back-link" href="../">← 返回 App 列表</a>
+    <a class="back-link" href="../">← Back to Apps</a>
 
     <header class="header">
       <h1>Starling</h1>
-      <p>Starling 计算器的预览页面。下方轮播展示了当前的 5 张应用截图，支持自动播放，也可以手动切换。</p>
+      <p>Preview the Starling Calculator experience. Browse the five App Store screenshots below with autoplay, arrow controls, and pagination dots.</p>
     </header>
 
-    <section class="carousel" aria-label="Starling 应用截图轮播">
+    <section class="carousel" aria-label="Starling app screenshot carousel">
       <div class="slides" id="slides">
         <figure class="slide">
-          <img src="./AppStore1.png" alt="Starling 截图 1">
+          <img src="./AppStore1.png" alt="Starling screenshot 1">
         </figure>
         <figure class="slide">
-          <img src="./AppStore2.png" alt="Starling 截图 2">
+          <img src="./AppStore2.png" alt="Starling screenshot 2">
         </figure>
         <figure class="slide">
-          <img src="./AppStore3.png" alt="Starling 截图 3">
+          <img src="./AppStore3.png" alt="Starling screenshot 3">
         </figure>
         <figure class="slide">
-          <img src="./AppStore4.png" alt="Starling 截图 4">
+          <img src="./AppStore4.png" alt="Starling screenshot 4">
         </figure>
         <figure class="slide">
-          <img src="./AppStore5.png" alt="Starling 截图 5">
+          <img src="./AppStore5.png" alt="Starling screenshot 5">
         </figure>
       </div>
 
-      <button class="nav-button nav-prev" id="prevButton" type="button" aria-label="上一张">‹</button>
-      <button class="nav-button nav-next" id="nextButton" type="button" aria-label="下一张">›</button>
+      <button class="nav-button nav-prev" id="prevButton" type="button" aria-label="Previous slide">‹</button>
+      <button class="nav-button nav-next" id="nextButton" type="button" aria-label="Next slide">›</button>
 
-      <div class="dots" id="dots" aria-label="轮播分页"></div>
+      <div class="dots" id="dots" aria-label="Carousel pagination"></div>
     </section>
   </main>
 
@@ -215,7 +218,7 @@
         const dot = document.createElement("button");
         dot.type = "button";
         dot.className = i === 0 ? "dot active" : "dot";
-        dot.setAttribute("aria-label", `查看第 ${i + 1} 张`);
+        dot.setAttribute("aria-label", `View slide ${i + 1}`);
         dot.addEventListener("click", () => {
           goToSlide(i);
           restartAutoplay();
