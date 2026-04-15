@@ -53,6 +53,42 @@
       letter-spacing: -0.04em;
     }
 
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0 28px;
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .link-pill.primary {
+      background: #4263eb;
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(66, 99, 235, 0.24);
+    }
+
+    .link-pill.secondary {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--accent);
+      border: 1px solid rgba(96, 128, 255, 0.18);
+    }
+
+    .link-pill:hover,
+    .link-pill:focus-visible {
+      transform: translateY(-2px);
+    }
+
     .carousel-wrap {
       width: 328px;
       max-width: calc(100vw - 36px);
@@ -173,6 +209,11 @@
 
     <header class="header">
       <h1>Starling Calculator</h1>
+      <nav class="link-row" aria-label="Starling links">
+        <a class="link-pill primary" href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">View on App Store</a>
+        <a class="link-pill secondary" href="../privacy.html">Privacy</a>
+        <a class="link-pill secondary" href="../terms.html">Terms of Use</a>
+      </nav>
     </header>
 
     <section class="carousel-wrap" aria-label="Starling app screenshot carousel">

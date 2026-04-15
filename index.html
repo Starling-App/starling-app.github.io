@@ -50,6 +50,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
       gap: 24px;
+      margin-bottom: 32px;
     }
 
     .app-link {
@@ -98,6 +99,24 @@
       line-height: 1.6;
     }
 
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: #4263eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      text-decoration: underline;
+    }
+
     @media (max-width: 640px) {
       body {
         padding: 28px 18px 40px;
@@ -132,6 +151,12 @@
         </article>
       </a>
     </section>
+
+    <nav class="footer-links" aria-label="Site links">
+      <a href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./terms.html">Terms of Use</a>
+    </nav>
   </main>
 </body>
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg:
+        radial-gradient(circle at top left, rgba(120, 219, 255, 0.45), transparent 35%),
+        radial-gradient(circle at top right, rgba(255, 189, 122, 0.35), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.82);
+      --card-border: rgba(96, 128, 255, 0.16);
+      --text-main: #162033;
+      --text-subtle: #5f6c88;
+      --accent: #4263eb;
+      --shadow: 0 24px 60px rgba(79, 98, 141, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 18px 48px;
+      font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--page-bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card {
+      padding: 28px 24px;
+      border-radius: 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin: 26px 0 10px;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.75;
+      color: var(--text-subtle);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="./">← Back to Apps</a>
+    <article class="card">
+      <h1>Terms of Use</h1>
+      <p>This page is a simple placeholder for the Starling Calculator terms of use. Replace this text with the legal language you want to publish.</p>
+
+      <h2>Use of the App</h2>
+      <p>Explain the permitted use of the app, any limitations, and user responsibilities when using the service.</p>
+
+      <h2>Availability</h2>
+      <p>Describe that app features may change over time and that availability may depend on device, platform, or region.</p>
+
+      <h2>Contact</h2>
+      <p>Add your preferred contact email or support channel here for legal or support questions.</p>
+    </article>
+  </main>
+</body>
+</html>
