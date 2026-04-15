@@ -53,12 +53,17 @@
       letter-spacing: -0.04em;
     }
 
+    .carousel-wrap {
+      width: 328px;
+      max-width: calc(100vw - 36px);
+      margin: 0 auto;
+    }
+
     .carousel {
       position: relative;
       overflow: hidden;
-      width: 388px;
-      max-width: calc(100vw - 36px);
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
       border-radius: 30px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -84,13 +89,20 @@
       height: auto;
       border-radius: 0;
       object-fit: contain;
-      background: #fff;
+    }
+
+    .controls {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      min-height: 46px;
     }
 
     .nav-button {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0;
       width: 46px;
       height: 46px;
       border: 0;
@@ -105,22 +117,22 @@
     .nav-button:hover,
     .nav-button:focus-visible {
       background: rgba(20, 32, 54, 0.9);
-      transform: translateY(-50%) scale(1.04);
+      transform: scale(1.04);
     }
 
     .nav-prev {
-      left: 16px;
+      left: 0;
     }
 
     .nav-next {
-      right: 16px;
+      right: 0;
     }
 
     .dots {
       display: flex;
       justify-content: center;
       gap: 10px;
-      padding: 16px 16px 20px;
+      padding: 0 56px;
     }
 
     .dot {
@@ -163,29 +175,32 @@
       <h1>Starling Calculator</h1>
     </header>
 
-    <section class="carousel" aria-label="Starling app screenshot carousel">
-      <div class="slides" id="slides">
-        <figure class="slide">
-          <img src="./AppStore1.png" alt="Starling screenshot 1">
-        </figure>
-        <figure class="slide">
-          <img src="./AppStore2.png" alt="Starling screenshot 2">
-        </figure>
-        <figure class="slide">
-          <img src="./AppStore3.png" alt="Starling screenshot 3">
-        </figure>
-        <figure class="slide">
-          <img src="./AppStore4.png" alt="Starling screenshot 4">
-        </figure>
-        <figure class="slide">
-          <img src="./AppStore5.png" alt="Starling screenshot 5">
-        </figure>
+    <section class="carousel-wrap" aria-label="Starling app screenshot carousel">
+      <div class="carousel">
+        <div class="slides" id="slides">
+          <figure class="slide">
+            <img src="./AppStore1.png" alt="Starling screenshot 1">
+          </figure>
+          <figure class="slide">
+            <img src="./AppStore2.png" alt="Starling screenshot 2">
+          </figure>
+          <figure class="slide">
+            <img src="./AppStore3.png" alt="Starling screenshot 3">
+          </figure>
+          <figure class="slide">
+            <img src="./AppStore4.png" alt="Starling screenshot 4">
+          </figure>
+          <figure class="slide">
+            <img src="./AppStore5.png" alt="Starling screenshot 5">
+          </figure>
+        </div>
       </div>
 
-      <button class="nav-button nav-prev" id="prevButton" type="button" aria-label="Previous slide">‹</button>
-      <button class="nav-button nav-next" id="nextButton" type="button" aria-label="Next slide">›</button>
-
-      <div class="dots" id="dots" aria-label="Carousel pagination"></div>
+      <div class="controls">
+        <button class="nav-button nav-prev" id="prevButton" type="button" aria-label="Previous slide">‹</button>
+        <div class="dots" id="dots" aria-label="Carousel pagination"></div>
+        <button class="nav-button nav-next" id="nextButton" type="button" aria-label="Next slide">›</button>
+      </div>
     </section>
   </main>
 
