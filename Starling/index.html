@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starling</title>
+  <title>Starling Calculator</title>
   <style>
     :root {
       color-scheme: light;
@@ -220,7 +220,8 @@
 
     function goToSlide(index) {
       currentIndex = (index + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      const slideWidth = slides.parentElement.clientWidth;
+      slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
       updateDots();
     }
 
@@ -235,6 +236,10 @@
       startAutoplay();
     }
 
+    window.addEventListener("resize", () => {
+      goToSlide(currentIndex);
+    });
+
     prevButton.addEventListener("click", () => {
       goToSlide(currentIndex - 1);
       restartAutoplay();
@@ -246,6 +251,7 @@
     });
 
     renderDots();
+    goToSlide(0);
     startAutoplay();
   </script>
 </body>
