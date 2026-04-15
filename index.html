@@ -1,11 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello, world</title>
+  <title>Starling Apps</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg:
+        radial-gradient(circle at top left, rgba(120, 219, 255, 0.45), transparent 35%),
+        radial-gradient(circle at top right, rgba(255, 189, 122, 0.35), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --card-border: rgba(96, 128, 255, 0.16);
+      --text-main: #162033;
+      --text-subtle: #5f6c88;
+      --shadow: 0 24px 60px rgba(79, 98, 141, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 56px 24px;
+      font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--page-bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      width: min(960px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-subtle);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+      gap: 24px;
+    }
+
+    .app-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px;
+      border-radius: 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .app-link:hover .app-card,
+    .app-link:focus-visible .app-card {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(59, 82, 139, 0.24);
+      border-color: rgba(80, 116, 255, 0.28);
+    }
+
+    .app-icon {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 74px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 12px 30px rgba(61, 82, 134, 0.22);
+    }
+
+    .app-meta h2 {
+      margin: 0;
+      font-size: 1.28rem;
+    }
+
+    .app-meta p {
+      margin: 8px 0 0;
+      color: var(--text-subtle);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 28px 18px 40px;
+      }
+
+      .app-card {
+        padding: 18px;
+      }
+
+      .app-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world</h1>
+  <main class="page">
+    <section class="hero">
+      <h1>Apps</h1>
+      <p>这里展示当前可用的 App。目前只有一个：Starling 计算器。</p>
+    </section>
+
+    <section class="app-grid" aria-label="App 列表">
+      <a class="app-link" href="./Starling/">
+        <article class="app-card">
+          <img class="app-icon" src="./AppEntries/Starling.png" alt="Starling 图标">
+          <div class="app-meta">
+            <h2>Starling</h2>
+            <p>一个简洁的计算器 App，点击查看预览截图。</p>
+          </div>
+        </article>
+      </a>
+    </section>
+  </main>
 </body>
 </html>

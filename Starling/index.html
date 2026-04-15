@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starling</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg:
+        radial-gradient(circle at top right, rgba(136, 118, 255, 0.24), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(89, 219, 211, 0.24), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f3f7ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --card-border: rgba(96, 128, 255, 0.16);
+      --text-main: #142036;
+      --text-subtle: #5e6a85;
+      --accent: #4263eb;
+      --shadow: 0 30px 80px rgba(50, 74, 128, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 18px 44px;
+      font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--page-bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .header p {
+      margin: 14px 0 26px;
+      max-width: 620px;
+      line-height: 1.7;
+      color: var(--text-subtle);
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 420ms ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 24px;
+    }
+
+    .slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 16px 40px rgba(29, 45, 88, 0.12);
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(20, 32, 54, 0.72);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .nav-button:hover,
+    .nav-button:focus-visible {
+      background: rgba(20, 32, 54, 0.9);
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .nav-prev {
+      left: 16px;
+    }
+
+    .nav-next {
+      right: 16px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 16px 22px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      padding: 0;
+      border-radius: 999px;
+      background: rgba(81, 106, 168, 0.24);
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 640px) {
+      .slide {
+        padding: 14px;
+      }
+
+      .slide img {
+        border-radius: 18px;
+      }
+
+      .nav-button {
+        width: 40px;
+        height: 40px;
+      }
+
+      .nav-prev {
+        left: 10px;
+      }
+
+      .nav-next {
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="../">← 返回 App 列表</a>
+
+    <header class="header">
+      <h1>Starling</h1>
+      <p>Starling 计算器的预览页面。下方轮播展示了当前的 5 张应用截图，支持自动播放，也可以手动切换。</p>
+    </header>
+
+    <section class="carousel" aria-label="Starling 应用截图轮播">
+      <div class="slides" id="slides">
+        <figure class="slide">
+          <img src="./AppStore1.png" alt="Starling 截图 1">
+        </figure>
+        <figure class="slide">
+          <img src="./AppStore2.png" alt="Starling 截图 2">
+        </figure>
+        <figure class="slide">
+          <img src="./AppStore3.png" alt="Starling 截图 3">
+        </figure>
+        <figure class="slide">
+          <img src="./AppStore4.png" alt="Starling 截图 4">
+        </figure>
+        <figure class="slide">
+          <img src="./AppStore5.png" alt="Starling 截图 5">
+        </figure>
+      </div>
+
+      <button class="nav-button nav-prev" id="prevButton" type="button" aria-label="上一张">‹</button>
+      <button class="nav-button nav-next" id="nextButton" type="button" aria-label="下一张">›</button>
+
+      <div class="dots" id="dots" aria-label="轮播分页"></div>
+    </section>
+  </main>
+
+  <script>
+    const slides = document.getElementById("slides");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+    const dotsContainer = document.getElementById("dots");
+    const totalSlides = slides.children.length;
+    let currentIndex = 0;
+    let autoplayId = null;
+
+    function renderDots() {
+      for (let i = 0; i < totalSlides; i += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = i === 0 ? "dot active" : "dot";
+        dot.setAttribute("aria-label", `查看第 ${i + 1} 张`);
+        dot.addEventListener("click", () => {
+          goToSlide(i);
+          restartAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateDots() {
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateDots();
+    }
+
+    function startAutoplay() {
+      autoplayId = window.setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 3200);
+    }
+
+    function restartAutoplay() {
+      window.clearInterval(autoplayId);
+      startAutoplay();
+    }
+
+    prevButton.addEventListener("click", () => {
+      goToSlide(currentIndex - 1);
+      restartAutoplay();
+    });
+
+    nextButton.addEventListener("click", () => {
+      goToSlide(currentIndex + 1);
+      restartAutoplay();
+    });
+
+    renderDots();
+    startAutoplay();
+  </script>
+</body>
+</html>
