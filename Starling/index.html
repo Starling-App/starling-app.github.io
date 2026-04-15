@@ -53,40 +53,49 @@
       letter-spacing: -0.04em;
     }
 
+    .intro {
+      margin: 12px 0 0;
+      max-width: 560px;
+      color: var(--text-subtle);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(20, 32, 54, 0.05);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
     .link-row {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin: 18px 0 28px;
+      margin: 20px 0 28px;
     }
 
-    .link-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 16px;
-      border-radius: 999px;
+    .link-row a {
+      color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
     }
 
-    .link-pill.primary {
-      background: #4263eb;
-      color: #fff;
-      box-shadow: 0 14px 28px rgba(66, 99, 235, 0.24);
-    }
-
-    .link-pill.secondary {
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--accent);
-      border: 1px solid rgba(96, 128, 255, 0.18);
-    }
-
-    .link-pill:hover,
-    .link-pill:focus-visible {
-      transform: translateY(-2px);
+    .link-row a:hover,
+    .link-row a:focus-visible {
+      text-decoration: underline;
     }
 
     .carousel-wrap {
@@ -209,10 +218,16 @@
 
     <header class="header">
       <h1>Starling Calculator</h1>
+      <p class="intro">A powerful bilingual voice calculator that understands you instantly.</p>
+      <div class="chip-row" aria-label="App details">
+        <span class="chip">iPhone</span>
+        <span class="chip">iOS 18+</span>
+        <span class="chip">Voice Input</span>
+      </div>
       <nav class="link-row" aria-label="Starling links">
-        <a class="link-pill primary" href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">View on App Store</a>
-        <a class="link-pill secondary" href="../privacy.html">Privacy</a>
-        <a class="link-pill secondary" href="../terms.html">Terms of Use</a>
+        <a href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms of Use</a>
       </nav>
     </header>
 
