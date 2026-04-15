@@ -80,14 +80,6 @@
       letter-spacing: 0.02em;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 360px);
-      gap: 28px;
-      align-items: end;
-      margin-top: 18px;
-    }
-
     .hero-copy h1 {
       margin: 0;
       font-size: clamp(3rem, 7vw, 5.4rem);
@@ -122,36 +114,6 @@
       font-size: 0.92rem;
       font-weight: 600;
       box-shadow: 0 12px 30px rgba(74, 97, 152, 0.08);
-    }
-
-    .hero-panel {
-      position: relative;
-      padding: 24px;
-      border-radius: 28px;
-      background: linear-gradient(160deg, rgba(33, 58, 114, 0.96), rgba(58, 107, 226, 0.9));
-      color: #f7faff;
-      box-shadow: 0 28px 70px rgba(50, 74, 128, 0.22);
-    }
-
-    .hero-panel-label {
-      margin: 0 0 10px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .hero-panel h2 {
-      margin: 0;
-      font-size: 1.5rem;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-panel p {
-      margin: 12px 0 0;
-      line-height: 1.7;
-      color: rgba(247, 250, 255, 0.82);
     }
 
     .section-header {
@@ -316,34 +278,6 @@
       text-decoration: underline;
     }
 
-    .studio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-bottom: 30px;
-    }
-
-    .studio-card {
-      padding: 22px;
-      border-radius: 26px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      box-shadow: 0 18px 46px rgba(74, 97, 152, 0.12);
-      backdrop-filter: blur(18px);
-    }
-
-    .studio-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .studio-card p {
-      margin: 0;
-      color: var(--text-subtle);
-      line-height: 1.72;
-    }
-
     .footer {
       display: flex;
       flex-wrap: wrap;
@@ -376,15 +310,8 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid,
-      .studio-grid,
       .featured-card {
         grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-panel,
-      .featured-card {
-        max-width: 100%;
       }
 
       .app-icon {
@@ -416,21 +343,14 @@
   <main class="page">
     <section class="hero">
       <span class="eyebrow">Starling Studio</span>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1>Starling Apps</h1>
-          <p>Starling is an independent studio building polished commercial apps for Apple platforms. Each release is named after a bird, creating a growing family of distinctive iPhone and macOS products designed with clarity, personality, and everyday usefulness in mind.</p>
-          <div class="hero-meta" aria-label="Studio highlights">
-            <span class="meta-pill">Commercial Apple Apps</span>
-            <span class="meta-pill">iPhone + macOS Roadmap</span>
-            <span class="meta-pill">Bird-Inspired App Names</span>
-          </div>
+      <div class="hero-copy">
+        <h1>Starling Apps</h1>
+        <p>Commercial Apple apps by Starling, with each product named after a bird and crafted for a polished, focused user experience.</p>
+        <div class="hero-meta" aria-label="Studio highlights">
+          <span class="meta-pill">Commercial Apple Apps</span>
+          <span class="meta-pill">iPhone + macOS</span>
+          <span class="meta-pill">Bird-Inspired Product Names</span>
         </div>
-        <aside class="hero-panel">
-          <p class="hero-panel-label">Now Featured</p>
-          <h2>Starling Calculator</h2>
-          <p>A powerful bilingual voice calculator for iPhone that understands spoken math instantly and turns everyday calculations into a faster, more natural experience.</p>
-        </aside>
       </div>
     </section>
 
@@ -467,30 +387,6 @@
             </div>
           </article>
         </a>
-      </div>
-    </section>
-
-    <section aria-labelledby="studio-title">
-      <div class="section-header">
-        <div>
-          <h2 id="studio-title">About the Studio</h2>
-        </div>
-        <p>Every product under Starling is part of a consistent brand system: bird-inspired names, polished Apple-first experiences, and a clear focus on commercial quality.</p>
-      </div>
-
-      <div class="studio-grid">
-        <article class="studio-card">
-          <h3>Apple-First Product Design</h3>
-          <p>Starling apps are created for Apple users, with releases planned across iPhone and macOS experiences that feel native, modern, and premium.</p>
-        </article>
-        <article class="studio-card">
-          <h3>A Growing Bird-Named Catalog</h3>
-          <p>Each app carries the name of a bird, giving the studio lineup a recognizable identity while allowing every product to have its own character.</p>
-        </article>
-        <article class="studio-card">
-          <h3>Built for Commercial Launch</h3>
-          <p>This site is the home base for public product pages, support information, legal documents, and future releases from the Starling studio.</p>
-        </article>
       </div>
     </section>
 
