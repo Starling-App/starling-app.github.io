@@ -53,17 +53,11 @@
       letter-spacing: -0.04em;
     }
 
-    .header p {
-      margin: 14px 0 26px;
-      max-width: 640px;
-      line-height: 1.7;
-      color: var(--text-subtle);
-    }
-
     .carousel {
       position: relative;
       overflow: hidden;
-      width: min(100%, 620px);
+      width: 388px;
+      max-width: calc(100vw - 36px);
       margin: 0 auto;
       border-radius: 30px;
       background: var(--card-bg);
@@ -79,18 +73,16 @@
 
     .slide {
       min-width: 100%;
-      padding: 20px;
+      padding: 0;
     }
 
     .slide img {
       display: block;
       width: 100%;
       height: auto;
-      max-height: 1344px;
-      border-radius: 22px;
-      object-fit: cover;
+      border-radius: 0;
+      object-fit: contain;
       background: #fff;
-      box-shadow: 0 16px 40px rgba(29, 45, 88, 0.12);
     }
 
     .nav-button {
@@ -126,7 +118,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-      padding: 18px 16px 22px;
+      padding: 16px 16px 20px;
     }
 
     .dot {
@@ -146,14 +138,6 @@
     }
 
     @media (max-width: 640px) {
-      .slide {
-        padding: 14px;
-      }
-
-      .slide img {
-        border-radius: 18px;
-      }
-
       .nav-button {
         width: 40px;
         height: 40px;
@@ -174,8 +158,7 @@
     <a class="back-link" href="../">← Back to Apps</a>
 
     <header class="header">
-      <h1>Starling</h1>
-      <p>Preview the Starling Calculator experience. Browse the five App Store screenshots below with autoplay, arrow controls, and pagination dots.</p>
+      <h1>Starling Calculator</h1>
     </header>
 
     <section class="carousel" aria-label="Starling app screenshot carousel">
