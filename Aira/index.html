@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aira</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page-bg:
+        radial-gradient(circle at top left, rgba(89, 116, 220, 0.26), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(151, 183, 255, 0.18), transparent 30%),
+        linear-gradient(180deg, #071026 0%, #0a122d 54%, #09101f 100%);
+      --card-bg: rgba(14, 23, 49, 0.8);
+      --card-border: rgba(138, 169, 255, 0.16);
+      --text-main: #f3f6ff;
+      --text-subtle: #a6b2d3;
+      --accent: #9cb8ff;
+      --shadow: 0 34px 80px rgba(3, 8, 22, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 18px 44px;
+      font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--page-bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      width: min(900px, 100%);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      margin: 12px 0 0;
+      max-width: 560px;
+      color: var(--text-subtle);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(243, 246, 255, 0.08);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .link-row a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link-row a:hover,
+    .link-row a:focus-visible {
+      text-decoration: underline;
+    }
+
+    .carousel-wrap {
+      width: 328px;
+      max-width: calc(100vw - 36px);
+      margin: 0 auto;
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin: 0;
+      border-radius: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 420ms ease;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .controls {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      min-height: 46px;
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 0;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(8, 12, 28, 0.82);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .nav-button:hover,
+    .nav-button:focus-visible {
+      background: rgba(8, 12, 28, 0.95);
+      transform: scale(1.04);
+    }
+
+    .nav-prev {
+      left: 0;
+    }
+
+    .nav-next {
+      right: 0;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 56px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      padding: 0;
+      border-radius: 999px;
+      background: rgba(156, 184, 255, 0.24);
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 640px) {
+      .nav-button {
+        width: 40px;
+        height: 40px;
+      }
+
+      .nav-prev {
+        left: 10px;
+      }
+
+      .nav-next {
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="../">← Back to Apps</a>
+
+    <header class="header">
+      <h1>Aira</h1>
+      <p class="intro">A calm breathing companion designed to help you settle in, follow your rhythm, and find a softer pace.</p>
+      <div class="chip-row" aria-label="App details">
+        <span class="chip">iPhone</span>
+        <span class="chip">Breathing</span>
+        <span class="chip">Mindfulness</span>
+      </div>
+      <nav class="link-row" aria-label="Aira links">
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms of Use</a>
+      </nav>
+    </header>
+
+    <section class="carousel-wrap" aria-label="Aira app screenshot carousel">
+      <div class="carousel">
+        <div class="slides" id="slides">
+          <figure class="slide">
+            <img src="./01_Premium_EN.png" alt="Aira screenshot 1">
+          </figure>
+          <figure class="slide">
+            <img src="./02_Premium_EN.png" alt="Aira screenshot 2">
+          </figure>
+          <figure class="slide">
+            <img src="./03_Premium_EN.png" alt="Aira screenshot 3">
+          </figure>
+          <figure class="slide">
+            <img src="./04_Premium_EN.png" alt="Aira screenshot 4">
+          </figure>
+          <figure class="slide">
+            <img src="./05_Premium_EN.png" alt="Aira screenshot 5">
+          </figure>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="nav-button nav-prev" type="button" aria-label="Previous screenshot">‹</button>
+        <div class="dots" id="dots" aria-label="Select screenshot"></div>
+        <button class="nav-button nav-next" type="button" aria-label="Next screenshot">›</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const slides = document.getElementById("slides");
+    const dotsContainer = document.getElementById("dots");
+    const prevButton = document.querySelector(".nav-prev");
+    const nextButton = document.querySelector(".nav-next");
+    const totalSlides = slides.children.length;
+    let currentIndex = 0;
+
+    function renderDots() {
+      dotsContainer.innerHTML = "";
+      for (let index = 0; index < totalSlides; index += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `dot${index === currentIndex ? " active" : ""}`;
+        dot.setAttribute("aria-label", `Go to screenshot ${index + 1}`);
+        dot.addEventListener("click", () => {
+          currentIndex = index;
+          updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateCarousel() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      renderDots();
+    }
+
+    prevButton.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+
+    nextButton.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    });
+
+    updateCarousel();
+  </script>
+</body>
+</html>
