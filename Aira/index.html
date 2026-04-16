@@ -213,19 +213,21 @@
 </head>
 <body>
   <main class="page">
-    <a class="back-link" href="../">← Back to Apps</a>
+    <a class="back-link" href="../">‹ All Apps</a>
 
     <header class="header">
       <h1>Aira</h1>
       <p class="intro">A calm breathing companion designed to help you settle in, follow your rhythm, and find a softer pace.</p>
       <div class="chip-row" aria-label="App details">
         <span class="chip">iPhone</span>
+        <span class="chip">iOS 18+</span>
+        <span class="chip">Apple Watch</span>
         <span class="chip">Breathing</span>
         <span class="chip">Mindfulness</span>
       </div>
       <nav class="link-row" aria-label="Aira links">
-        <a href="../privacy.html">Privacy</a>
-        <a href="../terms.html">Terms of Use</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms of Use</a>
       </nav>
     </header>
 
@@ -264,7 +266,9 @@
     const prevButton = document.querySelector(".nav-prev");
     const nextButton = document.querySelector(".nav-next");
     const totalSlides = slides.children.length;
+    const autoPlayDelay = 3200;
     let currentIndex = 0;
+    let autoPlayTimer = null;
 
     function renderDots() {
       dotsContainer.innerHTML = "";
@@ -286,17 +290,30 @@
       renderDots();
     }
 
+    function restartAutoPlay() {
+      if (autoPlayTimer) {
+        window.clearInterval(autoPlayTimer);
+      }
+      autoPlayTimer = window.setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+      }, autoPlayDelay);
+    }
+
     prevButton.addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
       updateCarousel();
+      restartAutoPlay();
     });
 
     nextButton.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % totalSlides;
       updateCarousel();
+      restartAutoPlay();
     });
 
     updateCarousel();
+    restartAutoPlay();
   </script>
 </body>
 </html>
