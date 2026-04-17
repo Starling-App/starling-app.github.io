@@ -37,14 +37,43 @@
       margin: 0 auto;
     }
 
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
     .back-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .lang-button {
+      border: 1px solid var(--card-border);
+      background: rgba(243, 246, 255, 0.08);
+      color: var(--text-main);
+      border-radius: 999px;
+      min-height: 34px;
+      padding: 0 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lang-button.active {
+      background: rgba(156, 184, 255, 0.28);
+      border-color: rgba(156, 184, 255, 0.52);
     }
 
     .header h1 {
@@ -213,22 +242,28 @@
 </head>
 <body>
   <main class="page">
-    <a class="back-link" href="../">‹ All Apps</a>
+    <div class="top-row">
+      <a class="back-link" href="../" data-i18n data-en="‹ All Apps" data-zh="‹ 所有应用">‹ All Apps</a>
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="zh">中文</button>
+      </div>
+    </div>
 
     <header class="header">
       <h1>Evenhale</h1>
-      <p class="intro">A calm breathing companion designed to help you settle in, follow your rhythm, and find a softer pace.</p>
+      <p class="intro" data-i18n data-en="A calm breathing companion designed to help you settle in, follow your rhythm, and find a softer pace." data-zh="一款平静的呼吸陪伴应用，帮助你安定下来，跟随自己的节奏，找到更柔和的呼吸步调。">A calm breathing companion designed to help you settle in, follow your rhythm, and find a softer pace.</p>
       <div class="chip-row" aria-label="App details">
         <span class="chip">iPhone</span>
         <span class="chip">iOS 18+</span>
         <span class="chip">Apple Watch</span>
-        <span class="chip">Breathing</span>
-        <span class="chip">Mindfulness</span>
+        <span class="chip" data-i18n data-en="Breathing" data-zh="呼吸">Breathing</span>
+        <span class="chip" data-i18n data-en="Mindfulness" data-zh="正念">Mindfulness</span>
       </div>
       <nav class="link-row" aria-label="Evenhale links">
         <a href="https://apps.apple.com/app/id6762370706" target="_blank" rel="noreferrer">App Store</a>
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms of Use</a>
+        <a href="./privacy.html" data-i18n data-en="Privacy" data-zh="隐私政策">Privacy</a>
+        <a href="./terms.html" data-i18n data-en="Terms of Use" data-zh="使用条款">Terms of Use</a>
       </nav>
     </header>
 
@@ -262,6 +297,33 @@
   </main>
 
   <script>
+    const languageButtons = Array.from(document.querySelectorAll(".lang-button"));
+    const translatableElements = Array.from(document.querySelectorAll("[data-i18n]"));
+    const savedLanguage = window.localStorage.getItem("evenhale-language");
+    const defaultLanguage = savedLanguage === "zh" ? "zh" : "en";
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+      translatableElements.forEach((element) => {
+        const text = element.dataset[language];
+        if (text) {
+          element.textContent = text;
+        }
+      });
+      languageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === language);
+      });
+      window.localStorage.setItem("evenhale-language", language);
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.lang === "zh" ? "zh" : "en");
+      });
+    });
+
+    applyLanguage(defaultLanguage);
+
     const slides = document.getElementById("slides");
     const dotsContainer = document.getElementById("dots");
     const prevButton = document.querySelector(".nav-prev");
