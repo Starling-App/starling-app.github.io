@@ -44,6 +44,33 @@
       margin: 0 auto;
     }
 
+    .top-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .lang-button {
+      border: 1px solid var(--panel-border);
+      background: rgba(66, 99, 235, 0.08);
+      color: var(--text-main);
+      border-radius: 999px;
+      min-height: 34px;
+      padding: 0 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lang-button.active {
+      background: rgba(66, 99, 235, 0.18);
+      border-color: rgba(66, 99, 235, 0.4);
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -187,6 +214,12 @@
 </head>
 <body>
   <main class="page">
+    <div class="top-row">
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="zh">中文</button>
+      </div>
+    </div>
     <section class="hero">
       <div class="hero-copy">
         <h1>Starling Apps</h1>
@@ -195,7 +228,7 @@
 
     <section aria-labelledby="featured-apps-title">
       <div class="section-header">
-        <h2 id="featured-apps-title">Featured Apps</h2>
+        <h2 id="featured-apps-title" data-i18n data-en="Featured Apps" data-zh="精选应用">Featured Apps</h2>
       </div>
 
       <div class="featured-grid" aria-label="App list">
@@ -206,11 +239,11 @@
               <div class="card-header">
                 <h3>Starling Calculator</h3>
               </div>
-              <p class="app-description">A powerful bilingual voice calculator that understands you instantly.</p>
+              <p class="app-description" data-i18n data-en="A powerful bilingual voice calculator that understands you instantly." data-zh="一款强大的双语语音计算器，懂你所说，快速完成计算。">A powerful bilingual voice calculator that understands you instantly.</p>
               <div class="chip-row" aria-label="App details">
                 <span class="chip">iPhone</span>
                 <span class="chip">iOS 18+</span>
-                <span class="chip">Voice Input</span>
+                <span class="chip" data-i18n data-en="Voice Input" data-zh="语音输入">Voice Input</span>
               </div>
             </div>
           </article>
@@ -221,15 +254,15 @@
             <img class="app-icon" src="./AppEntries/Aira.png" alt="Aira app icon">
             <div class="app-meta">
               <div class="card-header">
-                <h3>Evenhale</h3>
+                <h3 data-i18n data-en="Evenhale" data-zh="一息">Evenhale</h3>
               </div>
-              <p class="app-description">A breathing and mindfulness app built to help you slow down, settle your rhythm, and return to calm.</p>
+              <p class="app-description" data-i18n data-en="A breathing and mindfulness app built to help you slow down, settle your rhythm, and return to calm." data-zh="一款呼吸与正念应用，帮助你慢下来、稳定节奏，回到平静状态。">A breathing and mindfulness app built to help you slow down, settle your rhythm, and return to calm.</p>
               <div class="chip-row" aria-label="App details">
                 <span class="chip">iPhone</span>
                 <span class="chip">iOS 18+</span>
                 <span class="chip">Apple Watch</span>
-                <span class="chip">Breathing</span>
-                <span class="chip">Mindfulness</span>
+                <span class="chip" data-i18n data-en="Breathing" data-zh="呼吸">Breathing</span>
+                <span class="chip" data-i18n data-en="Mindfulness" data-zh="正念">Mindfulness</span>
               </div>
             </div>
           </article>
@@ -238,5 +271,33 @@
     </section>
 
   </main>
+  <script>
+    const languageButtons = Array.from(document.querySelectorAll(".lang-button"));
+    const translatableElements = Array.from(document.querySelectorAll("[data-i18n]"));
+    const savedLanguage = window.localStorage.getItem("evenhale-language");
+    const defaultLanguage = savedLanguage === "zh" ? "zh" : "en";
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+      translatableElements.forEach((element) => {
+        const text = element.dataset[language];
+        if (text) {
+          element.textContent = text;
+        }
+      });
+      languageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === language);
+      });
+      window.localStorage.setItem("evenhale-language", language);
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.lang === "zh" ? "zh" : "en");
+      });
+    });
+
+    applyLanguage(defaultLanguage);
+  </script>
 </body>
 </html>

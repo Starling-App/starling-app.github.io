@@ -37,14 +37,43 @@
       margin: 0 auto;
     }
 
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
     .back-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .lang-button {
+      border: 1px solid var(--card-border);
+      background: rgba(66, 99, 235, 0.08);
+      color: var(--text-main);
+      border-radius: 999px;
+      min-height: 34px;
+      padding: 0 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lang-button.active {
+      background: rgba(66, 99, 235, 0.18);
+      border-color: rgba(66, 99, 235, 0.4);
     }
 
     .header h1 {
@@ -214,20 +243,26 @@
 </head>
 <body>
   <main class="page">
-    <a class="back-link" href="../">‹ All Apps</a>
+    <div class="top-row">
+      <a class="back-link" href="../" data-i18n data-en="‹ All Apps" data-zh="‹ 所有应用">‹ All Apps</a>
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="zh">中文</button>
+      </div>
+    </div>
 
     <header class="header">
       <h1>Starling Calculator</h1>
-      <p class="intro">A powerful bilingual voice calculator that understands you instantly.</p>
+      <p class="intro" data-i18n data-en="A powerful bilingual voice calculator that understands you instantly." data-zh="一款强大的双语语音计算器，懂你所说，快速完成计算。">A powerful bilingual voice calculator that understands you instantly.</p>
       <div class="chip-row" aria-label="App details">
         <span class="chip">iPhone</span>
         <span class="chip">iOS 18+</span>
-        <span class="chip">Voice Input</span>
+        <span class="chip" data-i18n data-en="Voice Input" data-zh="语音输入">Voice Input</span>
       </div>
       <nav class="link-row" aria-label="Starling links">
         <a href="https://apps.apple.com/app/id6762246215" target="_blank" rel="noreferrer">App Store</a>
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms of Use</a>
+        <a href="./privacy.html" data-i18n data-en="Privacy" data-zh="隐私政策">Privacy</a>
+        <a href="./terms.html" data-i18n data-en="Terms of Use" data-zh="使用条款">Terms of Use</a>
       </nav>
     </header>
 
@@ -261,6 +296,33 @@
   </main>
 
   <script>
+    const languageButtons = Array.from(document.querySelectorAll(".lang-button"));
+    const translatableElements = Array.from(document.querySelectorAll("[data-i18n]"));
+    const savedLanguage = window.localStorage.getItem("evenhale-language");
+    const defaultLanguage = savedLanguage === "zh" ? "zh" : "en";
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+      translatableElements.forEach((element) => {
+        const text = element.dataset[language];
+        if (text) {
+          element.textContent = text;
+        }
+      });
+      languageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === language);
+      });
+      window.localStorage.setItem("evenhale-language", language);
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.lang === "zh" ? "zh" : "en");
+      });
+    });
+
+    applyLanguage(defaultLanguage);
+
     const slides = document.getElementById("slides");
     const prevButton = document.getElementById("prevButton");
     const nextButton = document.getElementById("nextButton");
